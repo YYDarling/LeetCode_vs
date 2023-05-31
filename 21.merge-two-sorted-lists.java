@@ -17,27 +17,32 @@
  */
 class Solution {
     public ListNode mergeTwoLists(ListNode list1, ListNode list2) {
-        // 虚拟头结点, 新的一个链表
-        ListNode dummy = new ListNode(-1), p = dummy; 
-        ListNode p1 = list1, p2 = list2;
-        
-        while(p1 != null && p2 != null){
-            if (p1.val <= p2.val){
-                p.val = p1.val;
-                p1 = p1.next;
-            }else{
-                p.val = p2.val;
+        ListNode dummy = new ListNode(-1);
+        ListNode p1 = list1;
+        ListNode p2 = list2;
+        ListNode p = dummy;
+
+        while (p1 != null && p2 != null){
+            if (p1.val > p2.val){
+                p.next = p2;
                 p2 = p2.next;
-            }
-            // p 指针不断前进
-            p = p.next; 
+        }else{
+            p.next = p1;
+            p1 = p1.next;
         }
-        // 退出循环后，p1 或者 p2 有一个不为空
+        //p指针不断前进
+         p = p.next;
+        }
+
+        ///////////////////////////////
+        //当有一个链接已经走完了之后， 另外一个链表还有剩下的，直接把第二个链表的东西， 接到第一个链表上面
+        //p1指针前进
         if (p1 != null){
-            p.next = p1;  //p2 为空, 提前结束
+            p.next = p1;
         }
+        //p2指针前进
         if (p2 != null){
-            p.next= p2;  //p1 为空, 提前结束
+            p.next = p2;
         }
         return dummy.next;
     }
