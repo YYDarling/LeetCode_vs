@@ -47,7 +47,7 @@ class Solution {
         return new String(arr);
     }
 
-    //reverse the char array
+    //翻转 arr[i, j]
     void reverse(char[] arr, int start, int end){
         while (start < end){
             char temp = arr[start];
